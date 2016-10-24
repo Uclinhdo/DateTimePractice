@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.time.temporal.TemporalUnit;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.JOptionPane;
@@ -26,7 +27,7 @@ public class DateUtilities {
      * @return date with ISO_LOCAL_DATE type
      */
     
-    public String toString(LocalDate date) throws IllegalArgumentException{
+    public String toStringDate(LocalDate date) throws IllegalArgumentException{
         if(date == null){
             throw new IllegalArgumentException("Error: Date cannot be null!");
         }
@@ -40,7 +41,7 @@ public class DateUtilities {
      * @throws IllegalArgumentException
      * @return date time with ISO_LOCAL_DATE_TIME type
      */
-    public String toString(LocalDateTime datetime) throws IllegalArgumentException{
+    public String toStringDateTime(LocalDateTime datetime) throws IllegalArgumentException{
         if(datetime == null){
             throw new IllegalArgumentException("Error: Date cannot be null");
         }
@@ -55,7 +56,7 @@ public class DateUtilities {
      */
     
     
-    public LocalDate currentDate(String date)throws IllegalArgumentException{
+    public LocalDate tocurrentDate(String date)throws IllegalArgumentException{
         if(date == null || date.isEmpty()){
             throw new IllegalArgumentException("Error: Date cannot be null or empty");
         }
@@ -74,7 +75,7 @@ public class DateUtilities {
      * @throws IllegalArgumentException
      * @return LocalDateTime in a specified format
      */
-    public LocalDateTime dateTime(String datetime){
+    public LocalDateTime todateTime(String datetime){
         if(datetime == null || datetime.isEmpty()){
             throw new IllegalArgumentException("Error: Date & Time cannot be null or empty.");
         }
@@ -88,6 +89,23 @@ public class DateUtilities {
         }
         return datetimeString;
     }
+    /**
+     * This method to show the difference between 2 dates
+     * by using LocalDate and TemporalUnit.
+     * TemporalUnit is used to specify what type/part of unit
+     * we want to see the difference like DAY,MONTH,HOURS and so on.
+     * @param startDate
+     * @param endDate
+     * @param tempo
+     * @return the difference in startDate and endDate by using TemporalUnit.
+     */
+    public long getDateDiff(LocalDate startDate,LocalDate endDate, TemporalUnit tempo){
+        long datediff;
+        datediff = tempo.between(startDate, endDate);
+        return datediff;
+    }
+
+    
     
     
 }
